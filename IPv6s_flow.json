@@ -1,0 +1,99 @@
+[{
+    "id": "1b786f47.f26331",
+    "type": "inject",
+    "z": "78ff6028.0d96",
+    "name": "",
+    "topic": "",
+    "payload": "",
+    "payloadType": "date",
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "x": 84,
+    "y": 176,
+    "wires": [
+        ["602abb1f.7a176c"]
+    ]
+}, {
+    "id": "602abb1f.7a176c",
+    "type": "http request",
+    "z": "78ff6028.0d96",
+    "name": "Request HTML",
+    "method": "GET",
+    "ret": "txt",
+    "url": "http://[fd00::212:4b00:60d:b19d]/",
+    "tls": "",
+    "x": 224.5,
+    "y": 98,
+    "wires": [
+        ["708cc202.e7e754"]
+    ]
+}, {
+    "id": "f458c8a5.75e0a8",
+    "type": "debug",
+    "z": "78ff6028.0d96",
+    "name": "JSONObject",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "true",
+    "x": 682.5,
+    "y": 30,
+    "wires": []
+}, {
+    "id": "708cc202.e7e754",
+    "type": "html",
+    "z": "78ff6028.0d96",
+    "name": "Filter HTML Content",
+    "property": "payload",
+    "outproperty": "payload",
+    "tag": "body",
+    "ret": "html",
+    "as": "single",
+    "x": 378.5,
+    "y": 20,
+    "wires": [
+        ["22471374.6feccc"]
+    ]
+}, {
+    "id": "22471374.6feccc",
+    "type": "json",
+    "z": "78ff6028.0d96",
+    "name": "",
+    "property": "payload",
+    "action": "obj",
+    "pretty": false,
+    "x": 502.5,
+    "y": 99,
+    "wires": [
+        ["f458c8a5.75e0a8", "d520aeea.d4af"]
+    ]
+}, {
+    "id": "d520aeea.d4af",
+    "type": "function",
+    "z": "78ff6028.0d96",
+    "name": "Get IPv6s",
+    "func": "var strings = msg.payload[0];\nvar IPv6s = [];\nstrings = strings.substring(\n                  strings.lastIndexOf(\"<ul>\"),\n                  strings.lastIndexOf(\"</ul>\")\n                  ).split(\"<li>\");\nfor (var line of strings) {\n  if (!line.startsWith(\"<ul>\")) {\n    IPv6s.push(\n          line.substring(0, line.indexOf(\" (\"))\n        );\n  }\n}\n\n// Storing IP in global variable\n//var globalIPv6s = this.context().global;\nglobal.set(\"IPv6s\", IPv6s); \n\nreturn {IPv6s:IPv6s};\n",
+    "outputs": 1,
+    "noerr": 0,
+    "x": 671.5,
+    "y": 169,
+    "wires": [
+        ["b0122423.edad9"]
+    ]
+}, {
+    "id": "b0122423.edad9",
+    "type": "debug",
+    "z": "78ff6028.0d96",
+    "name": "IPv6s",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "true",
+    "x": 724.5,
+    "y": 317,
+    "wires": []
+}]
