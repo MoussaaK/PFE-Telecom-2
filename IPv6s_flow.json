@@ -1,7 +1,33 @@
 [{
-    "id": "1b786f47.f26331",
+    "id": "e6c556de.189b6",
+    "type": "function",
+    "z": "978b2802.26def",
+    "name": "IPv6s",
+    "func": "var IPv6s = global.get(\"IPv6s\");\nmsg.payload = IPv6s;\nreturn msg;",
+    "outputs": 1,
+    "noerr": 0,
+    "x": 331,
+    "y": 44,
+    "wires": [
+        ["1a6051a0.ddb6fe"]
+    ]
+}, {
+    "id": "1a6051a0.ddb6fe",
+    "type": "debug",
+    "z": "978b2802.26def",
+    "name": "",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "false",
+    "x": 560,
+    "y": 43,
+    "wires": []
+}, {
+    "id": "5ad5695.fc1d298",
     "type": "inject",
-    "z": "78ff6028.0d96",
+    "z": "978b2802.26def",
     "name": "",
     "topic": "",
     "payload": "",
@@ -10,90 +36,197 @@
     "crontab": "",
     "once": false,
     "onceDelay": 0.1,
-    "x": 84,
-    "y": 176,
+    "x": 89,
+    "y": 45,
     "wires": [
-        ["602abb1f.7a176c"]
+        ["e6c556de.189b6"]
     ]
 }, {
-    "id": "602abb1f.7a176c",
-    "type": "http request",
-    "z": "78ff6028.0d96",
-    "name": "Request HTML",
-    "method": "GET",
-    "ret": "txt",
-    "url": "http://[fd00::212:4b00:60d:b19d]/",
-    "tls": "",
-    "x": 224.5,
-    "y": 98,
-    "wires": [
-        ["708cc202.e7e754"]
-    ]
-}, {
-    "id": "f458c8a5.75e0a8",
-    "type": "debug",
-    "z": "78ff6028.0d96",
-    "name": "JSONObject",
-    "active": true,
-    "tosidebar": true,
-    "console": false,
-    "tostatus": false,
-    "complete": "true",
-    "x": 682.5,
-    "y": 30,
+    "id": "38eccc41.0aecac",
+    "type": "http response",
+    "z": "978b2802.26def",
+    "name": "",
+    "x": 675.5,
+    "y": 217,
     "wires": []
 }, {
-    "id": "708cc202.e7e754",
-    "type": "html",
-    "z": "78ff6028.0d96",
-    "name": "Filter HTML Content",
-    "property": "payload",
-    "outproperty": "payload",
-    "tag": "body",
-    "ret": "html",
-    "as": "single",
-    "x": 378.5,
-    "y": 20,
+    "id": "5a2acd13.ebb5bc",
+    "type": "template",
+    "z": "978b2802.26def",
+    "name": "Index",
+    "field": "payload",
+    "fieldType": "msg",
+    "format": "html",
+    "syntax": "mustache",
+    "template": "<!-- index.html -->\n{{=<% %>=}}\n <!DOCTYPE html>\n <!-- define angular app -->\n <html ng-app=\"scotchApp\">\n <head>\n <!-- SCROLLS -->\n <!-- load bootstrap and fontawesome via CDN -->\n <link rel=\"stylesheet\" href=\"//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css\" />\n <link rel=\"stylesheet\" href=\"//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css\" />\n\n <!-- SPELLS -->\n <!-- load angular and angular route via CDN -->\n <script src=\"https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js\"></script>\n <script src=\"//ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.js\"></script>\n <script src=\"/ui/script.js\"></script>\n </head>\n <body ng-controller=\"mainController\">\n\n <!-- HEADER AND NAVBAR -->\n <header>\n <nav class=\"navbar navbar-default\">\n <div class=\"container\">\n <div class=\"navbar-header\">\n <a class=\"navbar-brand\" href=\"/ui\">Manage IoT Platform</a>\n </div>\n\n <ul class=\"nav navbar-nav navbar-right\">\n <li><a href=\"#\"><i class=\"fa fa-home\"></i> Home</a></li>\n <li><a href=\"#about\"><i class=\"fa fa-shield\"></i> About</a></li>\n <li><a href=\"#contact\"><i class=\"fa fa-comment\"></i> Contact</a></li>\n </ul>\n </div>\n </nav>\n </header>\n\n <!-- MAIN CONTENT AND INJECTED VIEWS -->\n <div id=\"main\">\n\n <!-- angular templating -->\n <!-- this is where content will be injected -->\n <div ng-view></div>\n\n </div>\n\n </body>\n </html>\n<%={{ }}=%>\n",
+    "x": 344.5,
+    "y": 126,
     "wires": [
-        ["22471374.6feccc"]
+        ["38eccc41.0aecac"]
     ]
 }, {
-    "id": "22471374.6feccc",
-    "type": "json",
-    "z": "78ff6028.0d96",
+    "id": "438adf60.da071",
+    "type": "http in",
+    "z": "978b2802.26def",
+    "name": "UI Index",
+    "url": "/ui",
+    "method": "get",
+    "upload": false,
+    "swaggerDoc": "",
+    "x": 127.5,
+    "y": 126,
+    "wires": [
+        ["5a2acd13.ebb5bc"]
+    ]
+}, {
+    "id": "64e64d73.77ac34",
+    "type": "http in",
+    "z": "978b2802.26def",
+    "name": "UI Application",
+    "url": "/ui/script.js",
+    "method": "get",
+    "swaggerDoc": "",
+    "x": 118.5,
+    "y": 367,
+    "wires": [
+        ["b219cc77.bfc6c8"]
+    ]
+}, {
+    "id": "b219cc77.bfc6c8",
+    "type": "template",
+    "z": "978b2802.26def",
+    "name": "application",
+    "field": "payload",
+    "fieldType": "msg",
+    "format": "text",
+    "syntax": "mustache",
+    "template": "// script.js\n\n // create the module and name it scotchApp\n // also include ngRoute for all our routing needs\n var scotchApp = angular.module('scotchApp', ['ngRoute']);\n\n // configure our routes\n scotchApp.config(function($routeProvider) {\n $routeProvider\n\n // route for the home page\n .when('/', {\n templateUrl : 'pages/home.html',\n controller : 'mainController'\n })\n\n // route for the about page\n .when('/sensors', {\n templateUrl : 'pages/sensors.html',\n controller : 'sensorsController'\n })\n\n // route for the contact page\n .when('/contact', {\n templateUrl : 'pages/contact.html',\n controller : 'contactController'\n });\n });\n\n // create the controller and inject Angular's $scope\n scotchApp.controller('mainController', function($scope) {\n // create a message to display in our view\n $scope.message = 'Welcome on your managment Platform !';\n });\n\n scotchApp.controller('sensorsController', function($scope) {\n $scope.message = 'Look! I am the sensors page.';\n });\n\n scotchApp.controller('contactController', function($scope) {\n $scope.message = 'Contact us! JK. This is just a demo.';\n });",
+    "x": 333.5,
+    "y": 368,
+    "wires": [
+        ["38eccc41.0aecac"]
+    ]
+}, {
+    "id": "14afc6f1.10d199",
+    "type": "template",
+    "z": "978b2802.26def",
+    "name": "UI Stylesheet",
+    "field": "payload",
+    "fieldType": "msg",
+    "format": "text",
+    "syntax": "mustache",
+    "template": "",
+    "x": 323.5,
+    "y": 414,
+    "wires": [
+        ["38eccc41.0aecac"]
+    ]
+}, {
+    "id": "a03d67d4.b99698",
+    "type": "http in",
+    "z": "978b2802.26def",
+    "name": "UI Style",
+    "url": "/ui/ui.css",
+    "method": "get",
+    "upload": false,
+    "swaggerDoc": "",
+    "x": 136.5,
+    "y": 414,
+    "wires": [
+        ["14afc6f1.10d199"]
+    ]
+}, {
+    "id": "16dbc953.a97db7",
+    "type": "template",
+    "z": "978b2802.26def",
+    "name": "Home",
+    "field": "payload",
+    "fieldType": "msg",
+    "format": "text",
+    "syntax": "mustache",
+    "template": "{{=<% %>=}}\n <!-- home.html -->\n <div class=\"jumbotron text-center\">\n <h1>Home Page</h1>\n\n <p>{{ message }}</p>\n </div>\n<%={{ }}=%>\n",
+    "x": 345.5,
+    "y": 170,
+    "wires": [
+        ["38eccc41.0aecac"]
+    ]
+}, {
+    "id": "6dafbfc0.e8aed8",
+    "type": "http in",
+    "z": "978b2802.26def",
+    "name": "UI Home",
+    "url": "/pages/home.html",
+    "method": "get",
+    "swaggerDoc": "",
+    "x": 129.5,
+    "y": 170,
+    "wires": [
+        ["16dbc953.a97db7"]
+    ]
+}, {
+    "id": "1f33b2d0.691685",
+    "type": "template",
+    "z": "978b2802.26def",
+    "name": "Sensors",
+    "field": "payload",
+    "fieldType": "msg",
+    "format": "text",
+    "syntax": "mustache",
+    "template": "{{=<% %>=}}\n <!-- about.html -->\n <div class=\"jumbotron text-center\">\n <h1>About Page</h1>\n <p>{{message}}</p>\n </div>\n<%={{ }}=%>",
+    "x": 355.5,
+    "y": 212,
+    "wires": [
+        ["38eccc41.0aecac"]
+    ]
+}, {
+    "id": "13a9c3ba.10a634",
+    "type": "http in",
+    "z": "978b2802.26def",
+    "name": "UI Sensors",
+    "url": "/pages/sensors.html",
+    "method": "get",
+    "upload": false,
+    "swaggerDoc": "",
+    "x": 130.5,
+    "y": 213,
+    "wires": [
+        ["1f33b2d0.691685"]
+    ]
+}, {
+    "id": "dd1e8785.115ee8",
+    "type": "template",
+    "z": "978b2802.26def",
+    "name": "Contact",
+    "field": "payload",
+    "fieldType": "msg",
+    "format": "html",
+    "syntax": "mustache",
+    "template": "{{=<% %>=}}\n <!-- contact.html -->\n <div class=\"jumbotron text-center\">\n <h1>Contact Page</h1>\n\n <p>{{ message }}</p>\n </div>\n<%={{ }}=%>\n",
+    "x": 342.5,
+    "y": 256,
+    "wires": [
+        ["38eccc41.0aecac"]
+    ]
+}, {
+    "id": "a3648622.69fe9",
+    "type": "http in",
+    "z": "978b2802.26def",
+    "name": "UI Contact",
+    "url": "/pages/contact.html",
+    "method": "get",
+    "swaggerDoc": "",
+    "x": 127.5,
+    "y": 257,
+    "wires": [
+        ["dd1e8785.115ee8"]
+    ]
+}, {
+    "id": "5b1dbfb.8fe38c",
+    "type": "comment",
+    "z": "978b2802.26def",
     "name": "",
-    "property": "payload",
-    "action": "obj",
-    "pretty": false,
-    "x": 502.5,
-    "y": 99,
-    "wires": [
-        ["f458c8a5.75e0a8", "d520aeea.d4af"]
-    ]
-}, {
-    "id": "d520aeea.d4af",
-    "type": "function",
-    "z": "78ff6028.0d96",
-    "name": "Get IPv6s",
-    "func": "var strings = msg.payload[0];\nvar IPv6s = [];\nstrings = strings.substring(\n                  strings.lastIndexOf(\"<ul>\"),\n                  strings.lastIndexOf(\"</ul>\")\n                  ).split(\"<li>\");\nfor (var line of strings) {\n  if (!line.startsWith(\"<ul>\")) {\n    IPv6s.push(\n          line.substring(0, line.indexOf(\" (\"))\n        );\n  }\n}\n\n// Storing IP in global variable\n//var globalIPv6s = this.context().global;\nglobal.set(\"IPv6s\", IPv6s); \n\nreturn {IPv6s:IPv6s};\n",
-    "outputs": 1,
-    "noerr": 0,
-    "x": 671.5,
-    "y": 169,
-    "wires": [
-        ["b0122423.edad9"]
-    ]
-}, {
-    "id": "b0122423.edad9",
-    "type": "debug",
-    "z": "78ff6028.0d96",
-    "name": "IPv6s",
-    "active": true,
-    "tosidebar": true,
-    "console": false,
-    "tostatus": false,
-    "complete": "true",
-    "x": 724.5,
-    "y": 317,
+    "info": "Next step Afficher ttes les ip sur une page sous forme de liens et associer des dashboard si le capteur est de temperature",
+    "x": 563,
+    "y": 100,
     "wires": []
 }]
