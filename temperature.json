@@ -1,0 +1,46 @@
+[{
+    "id": "e12485c9.6177",
+    "type": "inject",
+    "z": "f6c8f1c2.f1885",
+    "name": "",
+    "topic": "",
+    "payload": "",
+    "payloadType": "date",
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "x": 82.5,
+    "y": 53,
+    "wires": [
+        ["9adf7c12.5efc2"]
+    ]
+}, {
+    "id": "9adf7c12.5efc2",
+    "type": "coap request",
+    "z": "f6c8f1c2.f1885",
+    "method": "GET",
+    "observe": false,
+    "url": "coap://[fd00::212:4b00:14b5:ef18]:5683/sensors/onboardtemperature",
+    "content-format": "text/plain",
+    "raw-buffer": false,
+    "name": "",
+    "x": 327.5,
+    "y": 26,
+    "wires": [
+        ["bf497c7a.9e11c8"]
+    ]
+}, {
+    "id": "bf497c7a.9e11c8",
+    "type": "debug",
+    "z": "f6c8f1c2.f1885",
+    "name": "",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "true",
+    "x": 498.5,
+    "y": 137,
+    "wires": []
+}]
