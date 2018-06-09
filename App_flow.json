@@ -1,260 +1,223 @@
 [{
-    "id": "c53ae9f5.4ed8a8",
-    "type": "function",
-    "z": "5ec01071.fe868",
-    "name": "IPv6s",
-    "func": "var IPv6s = global.get(\"IPv6s\");\nmsg.payload = IPv6s;\nreturn msg;",
-    "outputs": 1,
-    "noerr": 0,
-    "x": 329,
-    "y": 36,
-    "wires": [
-        ["d7c727.3c7b98d8"]
-    ]
-}, {
-    "id": "d7c727.3c7b98d8",
-    "type": "debug",
-    "z": "5ec01071.fe868",
-    "name": "",
-    "active": true,
-    "tosidebar": true,
-    "console": false,
-    "tostatus": false,
-    "complete": "false",
-    "x": 558,
-    "y": 35,
-    "wires": []
-}, {
-    "id": "40183ab7.263374",
-    "type": "inject",
-    "z": "5ec01071.fe868",
-    "name": "",
-    "topic": "",
-    "payload": "",
-    "payloadType": "date",
-    "repeat": "",
-    "crontab": "",
-    "once": false,
-    "onceDelay": 0.1,
-    "x": 87,
-    "y": 37,
-    "wires": [
-        ["c53ae9f5.4ed8a8"]
-    ]
-}, {
-    "id": "abaccdec.e9dfe",
+    "id": "d8d1e0fa.bd5528",
     "type": "http response",
-    "z": "5ec01071.fe868",
+    "z": "211c0667.395602",
     "name": "",
-    "x": 673.5,
-    "y": 209,
+    "x": 735,
+    "y": 163,
     "wires": []
 }, {
-    "id": "d803e9b9.8a61a",
+    "id": "9024be09.0ec7b8",
     "type": "template",
-    "z": "5ec01071.fe868",
+    "z": "211c0667.395602",
     "name": "Index",
     "field": "payload",
     "fieldType": "msg",
     "format": "html",
     "syntax": "mustache",
-    "template": "<!-- index.html -->\n{{=<% %>=}}\n    <!DOCTYPE html>\n    <!-- define angular app -->\n    <html ng-app=\"scotchApp\">\n\n    <head>\n        <!-- SCROLLS -->\n        <!-- load bootstrap and fontawesome via CDN -->\n        <link rel=\"stylesheet\" href=\"//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css\" />\n        <link rel=\"stylesheet\" href=\"//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css\" />\n\n        <!-- SPELLS -->\n        <!-- load angular and angular route via CDN -->\n        <script src=\"https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js\"></script>\n        <script src=\"//ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.js\"></script>\n        <script src=\"/ui/script.js\"></script>\n    </head>\n    <style>\n        table {\n            width: 100%;\n        }\n\n        table,\n        th,\n        td {\n            border: 1px solid black;\n            border-collapse: collapse;\n        }\n\n        th,\n        td {\n            padding: 15px;\n            text-align: left;\n        }\n\n        table#t01 tr:nth-child(even) {\n            background-color: #eee;\n        }\n\n        table#t01 tr:nth-child(odd) {\n            background-color: #fff;\n        }\n\n        table#t01 th {\n            background-color: blue;\n            color: white;\n        }\n    </style>\n\n    <body ng-controller=\"mainController\">\n\n        <!-- HEADER AND NAVBAR -->\n        <header>\n            <nav class=\"navbar navbar-default\">\n                <div class=\"container\">\n                    <div class=\"navbar-header\">\n                        <a class=\"navbar-brand\" href=\"/ui\">Manage IoT Platform</a>\n                    </div>\n\n                    <ul class=\"nav navbar-nav navbar-right\">\n                        <li>\n                            <a href=\"#\">\n                                <i class=\"fa fa-home\"></i> Home</a>\n                        </li>\n                        <li>\n                            <a href=\"#about\">\n                                <i class=\"fa fa-shield\"></i> About</a>\n                        </li>\n                        <li>\n                            <a href=\"#contact\">\n                                <i class=\"fa fa-comment\"></i> Contact</a>\n                        </li>\n                        <li>\n                            <a href=\"#sensors\">\n                                <i class=\"fa fa-phone\"></i> Sensors</a>\n                        </li>\n                    </ul>\n                </div>\n            </nav>\n        </header>\n\n        <!-- MAIN CONTENT AND INJECTED VIEWS -->\n        <div id=\"main\">\n\n            <!-- angular templating -->\n            <!-- this is where content will be injected -->\n            <div ng-view></div>\n           \n        </div>\n\n    </body>\n\n    </html>\n<%={{ }}=%>",
-    "x": 342.5,
-    "y": 118,
+    "template": "<!-- index.html -->\n{{=<% %>=}}\n    <!DOCTYPE html>\n    <!-- define angular app -->\n    <html ng-app=\"scotchApp\">\n    <style>\n        table {\n            width: 100%;\n        }\n\n        table,\n        th,\n        td {\n            border: 1px solid black;\n            border-collapse: collapse;\n        }\n\n        th,\n        td {\n            padding: 15px;\n            text-align: left;\n        }\n\n        table#t01 tr:nth-child(even) {\n            background-color: #eee;\n        }\n\n        table#t01 tr:nth-child(odd) {\n            background-color: #fff;\n        }\n\n        table#t01 th {\n            background-color: #5f6060;\n            color: white;\n        }\n   </style>\n\n    <head>\n        <!-- SCROLLS -->\n        <!-- load bootstrap and fontawesome via CDN -->\n        <link rel=\"stylesheet\" href=\"//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css\" />\n        <link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css\" />\n        \n        <!-- SPELLS -->\n        <!-- load angular and angular route via CDN -->\n        <script src=\"https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js\"></script>\n        <script src=\"//ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.js\"></script>\n        <script src=\"/ui1/script.js\"></script>\n    </head>\n    \n    <body ng-controller=\"mainController\">\n\n        <!-- HEADER AND NAVBAR -->\n        <header>\n            <nav class=\"navbar navbar-default\">\n                <div class=\"container\">\n                    <div class=\"navbar-header\">\n                        <a class=\"navbar-brand\" href=\"/ui\">Manage IoT Platform</a>\n                    </div>\n\n                    <ul class=\"nav navbar-nav navbar-right\">\n                        <li>\n                            <a href=\"#\">\n                                <i class=\"fa fa-home\"></i> Home</a>\n                        </li>\n                        <li>\n                            <a href=\"#about\">\n                                <i class=\"fa fa-shield\"></i> About</a>\n                        </li>\n                        <li>\n                            <a href=\"#contact\">\n                                <i class=\"fa fa-comment\"></i> Contact</a>\n                        </li>\n                        <li>\n                            <a href=\"#sensors\">\n                                <i class=\"fas fa-thermometer-half\"></i> Sensors</a>\n                        </li>\n                    </ul>\n                </div>\n            </nav>\n        </header>\n\n        <!-- MAIN CONTENT AND INJECTED VIEWS -->\n        <div id=\"main\">\n\n            <!-- angular templating -->\n            <!-- this is where content will be injected -->\n            <div ng-view></div>\n           \n        </div>\n\n    </body>\n\n    </html>\n<%={{ }}=%>",
+    "x": 404,
+    "y": 72,
     "wires": [
-        ["abaccdec.e9dfe"]
+        ["d8d1e0fa.bd5528"]
     ]
 }, {
-    "id": "24d28487.b21704",
+    "id": "373fa51a.4d6652",
     "type": "http in",
-    "z": "5ec01071.fe868",
+    "z": "211c0667.395602",
     "name": "UI Index",
-    "url": "/ui",
+    "url": "/ui1",
     "method": "get",
     "upload": false,
     "swaggerDoc": "",
-    "x": 125.5,
-    "y": 118,
+    "x": 187,
+    "y": 72,
     "wires": [
-        ["d803e9b9.8a61a"]
+        ["9024be09.0ec7b8"]
     ]
 }, {
-    "id": "2895ab89.8d9454",
+    "id": "a5187c90.569a",
     "type": "http in",
-    "z": "5ec01071.fe868",
+    "z": "211c0667.395602",
     "name": "UI Application",
-    "url": "/ui/script.js",
+    "url": "/ui1/script.js",
     "method": "get",
+    "upload": false,
     "swaggerDoc": "",
-    "x": 116.5,
-    "y": 359,
+    "x": 178,
+    "y": 313,
     "wires": [
-        ["50b3ee78.2dd18"]
+        ["fb89b94d.856068"]
     ]
 }, {
-    "id": "50b3ee78.2dd18",
+    "id": "fb89b94d.856068",
     "type": "template",
-    "z": "5ec01071.fe868",
+    "z": "211c0667.395602",
     "name": "application",
     "field": "payload",
     "fieldType": "msg",
     "format": "javascript",
     "syntax": "mustache",
-    "template": "// script.js\n\n // create the module and name it scotchApp\n // also include ngRoute for all our routing needs\n var scotchApp = angular.module('scotchApp', ['ngRoute']);\n\n // configure our routes\n scotchApp.config(function($routeProvider) {\n $routeProvider\n\n // route for the home page\n .when('/', {\n templateUrl : 'pages/home.html',\n controller : 'mainController'\n })\n \n  // route for the sensors page\n .when('/sensors', {\n templateUrl : 'pages/sensors.html',\n controller : 'sensorsController'\n })\n\n // route for the about page\n .when('/about', {\n templateUrl : 'pages/about.html',\n controller : 'aboutController'\n })\n\n // route for the contact page\n .when('/contact', {\n templateUrl : 'pages/contact.html',\n controller : 'contactController'\n });\n });\n\n // create the controller and inject Angular's $scope\n scotchApp.controller('mainController', function($scope) {\n // create a message to display in our view\n $scope.message = 'Everyone come and see how good I look!';\n });\n\n scotchApp.controller('aboutController', function($scope) {\n $scope.message = 'Look! I am an about page.';\n });\n\n scotchApp.controller('contactController', function($scope) {\n $scope.message = 'Contact us! JK. This is just a demo.';\n });\n \n \n scotchApp.controller('sensorsController', function($scope) {\n $scope.message = 'Sensors Panel';\n $scope.IPv6s = payload;\n console.log($scope.IPv6s);\n });\n \n ",
-    "x": 331.5,
-    "y": 360,
+    "template": "// script.js\n\n // create the module and name it scotchApp\n // also include ngRoute for all our routing needs\n var scotchApp = angular.module('scotchApp', ['ngRoute']);\n\n // configure our routes\n scotchApp.config(function($routeProvider) {\n $routeProvider\n\n // route for the home page\n .when('/', {\n templateUrl : 'pages/home.html',\n controller : 'mainController'\n })\n \n  // route for the sensors page\n .when('/sensors', {\n templateUrl : 'pages/sensors.html',\n controller : 'sensorsController'\n })\n\n // route for the about page\n .when('/about', {\n templateUrl : 'pages/about.html',\n controller : 'aboutController'\n })\n\n // route for the contact page\n .when('/contact', {\n templateUrl : 'pages/contact.html',\n controller : 'contactController'\n });\n });\n\n // create the controller and inject Angular's $scope\n scotchApp.controller('mainController', function($scope) {\n // create a message to display in our view\n $scope.message = 'Everyone come and see how good I look!';\n });\n\n scotchApp.controller('aboutController', function($scope) {\n $scope.message = 'Information about us';\n });\n\n scotchApp.controller('contactController', function($scope) {\n $scope.message = 'Please fell free to contact us here !!!!';\n });\n \n \n scotchApp.controller('sensorsController', function($scope) {\n $scope.message = 'Here is the sensor Panel';\n $scope.IPv6s = payload;\n console.log($scope.IPv6s);\n });\n \n ",
+    "x": 393,
+    "y": 314,
     "wires": [
-        ["abaccdec.e9dfe"]
+        ["d8d1e0fa.bd5528"]
     ]
 }, {
-    "id": "651febe8.25ed64",
+    "id": "1f19b807.336408",
     "type": "template",
-    "z": "5ec01071.fe868",
+    "z": "211c0667.395602",
     "name": "UI Stylesheet",
     "field": "payload",
     "fieldType": "msg",
-    "format": "text",
+    "format": "css",
     "syntax": "mustache",
     "template": "",
-    "x": 321.5,
-    "y": 406,
+    "x": 383,
+    "y": 360,
     "wires": [
-        ["abaccdec.e9dfe"]
+        ["d8d1e0fa.bd5528"]
     ]
 }, {
-    "id": "9e1db223.5e7308",
+    "id": "8bc012cf.f0738",
     "type": "http in",
-    "z": "5ec01071.fe868",
+    "z": "211c0667.395602",
     "name": "UI Style",
-    "url": "/ui/ui.css",
+    "url": "/ui1/ui.css",
     "method": "get",
     "upload": false,
     "swaggerDoc": "",
-    "x": 134.5,
-    "y": 406,
+    "x": 196,
+    "y": 360,
     "wires": [
-        ["651febe8.25ed64"]
+        ["1f19b807.336408"]
     ]
 }, {
-    "id": "710b57b.0c3a228",
+    "id": "71c88fe1.22e75",
     "type": "template",
-    "z": "5ec01071.fe868",
+    "z": "211c0667.395602",
     "name": "Home",
     "field": "payload",
     "fieldType": "msg",
     "format": "text",
     "syntax": "mustache",
     "template": "{{=<% %>=}}\n <!-- home.html -->\n <div class=\"jumbotron text-center\">\n <h1>Home Page</h1>\n\n <p>{{ message }}</p>\n </div>\n<%={{ }}=%>\n",
-    "x": 343.5,
-    "y": 162,
+    "x": 405,
+    "y": 116,
     "wires": [
-        ["abaccdec.e9dfe"]
+        ["d8d1e0fa.bd5528"]
     ]
 }, {
-    "id": "7958a3a7.ca5894",
+    "id": "9fc7fc05.86b268",
     "type": "http in",
-    "z": "5ec01071.fe868",
+    "z": "211c0667.395602",
     "name": "UI Home",
     "url": "/pages/home.html",
     "method": "get",
     "swaggerDoc": "",
-    "x": 127.5,
-    "y": 162,
+    "x": 189,
+    "y": 116,
     "wires": [
-        ["710b57b.0c3a228"]
+        ["71c88fe1.22e75"]
     ]
 }, {
-    "id": "be772dc3.0ce9c8",
+    "id": "fd76a7cf.e66c4",
     "type": "template",
-    "z": "5ec01071.fe868",
+    "z": "211c0667.395602",
     "name": "About",
     "field": "payload",
     "fieldType": "msg",
     "format": "text",
     "syntax": "mustache",
     "template": "{{=<% %>=}}\n <!-- about.html -->\n <div class=\"jumbotron text-center\">\n <h1>About Page</h1>\n <p>{{message}}</p>\n </div>\n<%={{ }}=%>",
-    "x": 343.5,
-    "y": 204,
+    "x": 405,
+    "y": 158,
     "wires": [
-        ["abaccdec.e9dfe"]
+        ["d8d1e0fa.bd5528"]
     ]
 }, {
-    "id": "ef90d908.d0d02",
+    "id": "5e4d2968.5c1388",
     "type": "http in",
-    "z": "5ec01071.fe868",
+    "z": "211c0667.395602",
     "name": "UI About",
     "url": "/pages/about.html",
     "method": "get",
     "swaggerDoc": "",
-    "x": 128.5,
-    "y": 205,
+    "x": 190,
+    "y": 159,
     "wires": [
-        ["be772dc3.0ce9c8"]
+        ["fd76a7cf.e66c4"]
     ]
 }, {
-    "id": "4d4e130d.028694",
+    "id": "7a741948.8b99a8",
     "type": "template",
-    "z": "5ec01071.fe868",
+    "z": "211c0667.395602",
     "name": "Contact",
     "field": "payload",
     "fieldType": "msg",
     "format": "html",
     "syntax": "mustache",
     "template": "{{=<% %>=}}\n <!-- contact.html -->\n <div class=\"jumbotron text-center\">\n <h1>Contact Page</h1>\n\n <p>{{ message }}</p>\n </div>\n<%={{ }}=%>\n",
-    "x": 340.5,
-    "y": 248,
+    "x": 402,
+    "y": 202,
     "wires": [
-        ["abaccdec.e9dfe"]
+        ["d8d1e0fa.bd5528"]
     ]
 }, {
-    "id": "dffeb7ba.1734c8",
+    "id": "48017064.821588",
     "type": "http in",
-    "z": "5ec01071.fe868",
+    "z": "211c0667.395602",
     "name": "UI Contact",
     "url": "/pages/contact.html",
     "method": "get",
     "swaggerDoc": "",
-    "x": 125.5,
-    "y": 249,
+    "x": 187,
+    "y": 203,
     "wires": [
-        ["4d4e130d.028694"]
+        ["7a741948.8b99a8"]
     ]
 }, {
-    "id": "de08285.9ba3758",
-    "type": "comment",
-    "z": "5ec01071.fe868",
-    "name": "",
-    "info": "Next step Afficher ttes les ip sur une page sous forme de liens et associer des dashboard si le capteur est de temperature",
-    "x": 561,
-    "y": 92,
-    "wires": []
-}, {
-    "id": "57989dfb.7b874c",
-    "type": "template",
-    "z": "5ec01071.fe868",
-    "name": "Sensors",
-    "field": "payload",
-    "fieldType": "msg",
-    "format": "html",
-    "syntax": "mustache",
-    "template": "{{=<% %>=}}\n    <!-- contact.html -->\n    <div class=\"jumbotron text-center\" ng-controller=\"sensorsController\">\n        <h1>Sensors Page</h1>\n\n        <table id=\"t01\" ng-model=\"ip\">\n            <tr>\n                <th>Sensor ID</th>\n                <th>Sensor Type</th>\n                <th>IPv6s</th>\n            </tr>\n            <tr ng-repeat=\"item in IPv6s\">\n                <td>Sensor ID</td>\n                <td>Sensor Type</td>\n                <td>{{item}}</td>\n            </tr>\n        </table>\n    </div>",
-    "x": 343,
-    "y": 289,
-    "wires": [
-        ["abaccdec.e9dfe"]
-    ]
-}, {
-    "id": "7929fbf6.c76934",
+    "id": "e4f76da7.06756",
     "type": "http in",
-    "z": "5ec01071.fe868",
+    "z": "211c0667.395602",
     "name": "UI Sensors",
     "url": "/pages/sensors.html",
     "method": "get",
     "upload": false,
     "swaggerDoc": "",
-    "x": 128,
-    "y": 290,
+    "x": 189.5,
+    "y": 244,
     "wires": [
-        ["57989dfb.7b874c"]
+        ["58e9b583.9026c4"]
+    ]
+}, {
+    "id": "97c4d114.df65a8",
+    "type": "template",
+    "z": "211c0667.395602",
+    "name": "",
+    "field": "payload",
+    "fieldType": "msg",
+    "format": "handlebars",
+    "syntax": "mustache",
+    "template": "<!DOCTYPE html>\n<html>\n<head>\n<style>\ntable {\n    font-family: arial, sans-serif;\n    border-collapse: collapse;\n    width: 100%;\n}\n\ntd, th {\n    border: 1px solid #dddddd;\n    text-align: left;\n    padding: 8px;\n}\n\ntr:nth-child(even) {\n    background-color: #dddddd;\n}\n</style>\n</head>\n<body>\n\n<h2 class=\"text-center\">Sensors Table</h2>\n{{#_msgid}}\n{{/_msgid}}\n<table>\n  <tr>\n    <th>IPv6s</th>\n    <th>Temperature</th>\n    <th>Accelerometre</th>\n  </tr>\n  {{#items}}\n  <tr>\n    <td><a href=\"{{IPv6s}}\">{{IPv6s}}</a></td>\n    <td><strong>{{temperature}}</strong></td>\n    <td><strong>{{accelerometre}}</strong></td>\n  </tr>\n  {{/items}}\n</table>\n\n</body>\n</html>\n",
+    "output": "str",
+    "x": 463,
+    "y": 243,
+    "wires": [
+        ["d8d1e0fa.bd5528"]
+    ]
+}, {
+    "id": "58e9b583.9026c4",
+    "type": "function",
+    "z": "211c0667.395602",
+    "name": "IPv6s",
+    "func": "var data = global.get(\"data\");\nvar miniData = data.payload;\nmsg.items = miniData;\nmsg.empty = false;\n//msg = {\"header\":\"Data\", \"items\":msg.items, \"empty\":false};\nreturn msg;",
+    "outputs": 1,
+    "noerr": 0,
+    "x": 327,
+    "y": 244,
+    "wires": [
+        ["97c4d114.df65a8"]
     ]
 }]
