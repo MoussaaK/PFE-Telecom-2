@@ -1,0 +1,184 @@
+[{
+    "id": "e12485c9.6177",
+    "type": "inject",
+    "z": "f6c8f1c2.f1885",
+    "name": "",
+    "topic": "",
+    "payload": "",
+    "payloadType": "date",
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "x": 85.5,
+    "y": 20,
+    "wires": [
+        ["9adf7c12.5efc2", "2cfeb873.3125f"]
+    ]
+}, {
+    "id": "9adf7c12.5efc2",
+    "type": "coap request",
+    "z": "f6c8f1c2.f1885",
+    "method": "GET",
+    "observe": false,
+    "url": "coap://[fd00::212:4b00:14b5:ef18]:5683/sensors/onboardtemperature",
+    "content-format": "text/plain",
+    "raw-buffer": false,
+    "name": "",
+    "x": 258.5,
+    "y": 90,
+    "wires": [
+        ["bf497c7a.9e11c8", "25960ed1.e552ea"]
+    ]
+}, {
+    "id": "bf497c7a.9e11c8",
+    "type": "debug",
+    "z": "f6c8f1c2.f1885",
+    "name": "Temperature",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "true",
+    "x": 581.5,
+    "y": 89,
+    "wires": []
+}, {
+    "id": "da457ffa.3f5af",
+    "type": "debug",
+    "z": "f6c8f1c2.f1885",
+    "name": "LOG",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "true",
+    "x": 700.5,
+    "y": 300,
+    "wires": []
+}, {
+    "id": "2deca86a.1eca28",
+    "type": "mysql",
+    "z": "f6c8f1c2.f1885",
+    "mydb": "e39faaa2.663d78",
+    "name": "DB_TEMP",
+    "x": 576.5,
+    "y": 230,
+    "wires": [
+        ["da457ffa.3f5af"]
+    ]
+}, {
+    "id": "25960ed1.e552ea",
+    "type": "function",
+    "z": "f6c8f1c2.f1885",
+    "name": "SQL Write Query",
+    "func": "msg.topic = \"INSERT INTO TB_TEMP(IPv6s, temperature, accelerometre)    VALUES(\"+\"'\" + global.get(\"IPv6s\")+ \"'\" + \",\" + msg.payload + \", 0)\"\n\nreturn msg;",
+    "outputs": 1,
+    "noerr": 0,
+    "x": 435.5,
+    "y": 162,
+    "wires": [
+        ["2deca86a.1eca28", "7eb574c9.83b884"]
+    ]
+}, {
+    "id": "2cfeb873.3125f",
+    "type": "function",
+    "z": "f6c8f1c2.f1885",
+    "name": "IPv6s",
+    "func": "var IPv6s = global.get(\"IPv6s\");\nmsg.payload = IPv6s;\nreturn msg;",
+    "outputs": 1,
+    "noerr": 0,
+    "x": 298,
+    "y": 38,
+    "wires": [
+        ["3ba20942.c9203e"]
+    ]
+}, {
+    "id": "3ba20942.c9203e",
+    "type": "debug",
+    "z": "f6c8f1c2.f1885",
+    "name": "",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "false",
+    "x": 527,
+    "y": 37,
+    "wires": []
+}, {
+    "id": "7eb574c9.83b884",
+    "type": "debug",
+    "z": "f6c8f1c2.f1885",
+    "name": "SQL Query",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "topic",
+    "x": 669,
+    "y": 143,
+    "wires": []
+}, {
+    "id": "942a224d.d75e68",
+    "type": "function",
+    "z": "f6c8f1c2.f1885",
+    "name": "SQL Read Query",
+    "func": "msg.topic = \"SELECT IPv6s, temperature, accelerometre FROM TB_TEMP;\"\n\nreturn msg;",
+    "outputs": 1,
+    "noerr": 0,
+    "x": 283,
+    "y": 292,
+    "wires": [
+        ["aa91f2d5.a47358"]
+    ]
+}, {
+    "id": "aa91f2d5.a47358",
+    "type": "mysql",
+    "z": "f6c8f1c2.f1885",
+    "mydb": "e39faaa2.663d78",
+    "name": "DB_TEMP",
+    "x": 475,
+    "y": 342,
+    "wires": [
+        ["1e8c2b54.0d41e5"]
+    ]
+}, {
+    "id": "1e8c2b54.0d41e5",
+    "type": "debug",
+    "z": "f6c8f1c2.f1885",
+    "name": "LOG",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "true",
+    "x": 612,
+    "y": 433,
+    "wires": []
+}, {
+    "id": "e82c1b6b.303ec8",
+    "type": "inject",
+    "z": "f6c8f1c2.f1885",
+    "name": "",
+    "topic": "",
+    "payload": "",
+    "payloadType": "date",
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "x": 92,
+    "y": 293,
+    "wires": [
+        ["942a224d.d75e68"]
+    ]
+}, {
+    "id": "e39faaa2.663d78",
+    "type": "MySQLdatabase",
+    "z": "",
+    "host": "127.0.0.1",
+    "port": "3306",
+    "db": "DB_TEMP",
+    "tz": ""
+}]
