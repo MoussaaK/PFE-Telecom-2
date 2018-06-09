@@ -1,7 +1,7 @@
 [{
-    "id": "e12485c9.6177",
+    "id": "65b768ec.86edf8",
     "type": "inject",
-    "z": "f6c8f1c2.f1885",
+    "z": "cf747326.52453",
     "name": "",
     "topic": "",
     "payload": "",
@@ -10,37 +10,90 @@
     "crontab": "",
     "once": false,
     "onceDelay": 0.1,
-    "x": 82.5,
-    "y": 53,
+    "x": 92,
+    "y": 176,
     "wires": [
-        ["9adf7c12.5efc2"]
+        ["b1f941df.53b86"]
     ]
 }, {
-    "id": "9adf7c12.5efc2",
-    "type": "coap request",
-    "z": "f6c8f1c2.f1885",
+    "id": "b1f941df.53b86",
+    "type": "http request",
+    "z": "cf747326.52453",
+    "name": "Request HTML",
     "method": "GET",
-    "observe": false,
-    "url": "coap://[fd00::212:4b00:14b5:ef18]:5683/sensors/onboardtemperature",
-    "content-format": "text/plain",
-    "raw-buffer": false,
-    "name": "",
-    "x": 327.5,
-    "y": 26,
+    "ret": "txt",
+    "url": "http://[fd00::212:4b00:60d:b19d]/",
+    "tls": "",
+    "x": 232.5,
+    "y": 98,
     "wires": [
-        ["bf497c7a.9e11c8"]
+        ["f568da5.8b38c28"]
     ]
 }, {
-    "id": "bf497c7a.9e11c8",
+    "id": "d1670f4f.53197",
     "type": "debug",
-    "z": "f6c8f1c2.f1885",
-    "name": "",
+    "z": "cf747326.52453",
+    "name": "JSONObject",
     "active": true,
     "tosidebar": true,
     "console": false,
     "tostatus": false,
     "complete": "true",
-    "x": 498.5,
-    "y": 137,
+    "x": 690.5,
+    "y": 30,
+    "wires": []
+}, {
+    "id": "f568da5.8b38c28",
+    "type": "html",
+    "z": "cf747326.52453",
+    "name": "Filter HTML Content",
+    "property": "payload",
+    "outproperty": "payload",
+    "tag": "body",
+    "ret": "html",
+    "as": "single",
+    "x": 386.5,
+    "y": 20,
+    "wires": [
+        ["d3817938.cf2e5"]
+    ]
+}, {
+    "id": "d3817938.cf2e5",
+    "type": "json",
+    "z": "cf747326.52453",
+    "name": "",
+    "property": "payload",
+    "action": "obj",
+    "pretty": false,
+    "x": 510.5,
+    "y": 99,
+    "wires": [
+        ["d1670f4f.53197", "f89530e1.8b2e88"]
+    ]
+}, {
+    "id": "f89530e1.8b2e88",
+    "type": "function",
+    "z": "cf747326.52453",
+    "name": "Get IPv6s",
+    "func": "var strings = msg.payload[0];\nvar IPv6s = [];\nstrings = strings.substring(\n                  strings.lastIndexOf(\"<ul>\"),\n                  strings.lastIndexOf(\"</ul>\")\n                  ).split(\"<li>\");\nfor (var line of strings) {\n  if (!line.startsWith(\"<ul>\")) {\n    IPv6s.push(\n          line.substring(0, line.indexOf(\" (\"))\n        );\n  }\n}\n\n// Storing IP in global variable\n//var globalIPv6s = this.context().global;\nglobal.set(\"IPv6s\", IPv6s); \n\nreturn {IPv6s:IPv6s};\n",
+    "outputs": 1,
+    "noerr": 0,
+    "x": 679.5,
+    "y": 169,
+    "wires": [
+        ["7aaf5a3b.1861e4"]
+    ]
+}, {
+    "id": "7aaf5a3b.1861e4",
+    "type": "debug",
+    "z": "cf747326.52453",
+    "name": "IPv6s",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "true",
+    "x": 732.5,
+    "y": 317,
     "wires": []
 }]
