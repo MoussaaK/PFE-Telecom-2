@@ -1,19 +1,52 @@
-{{=<% %>=}}
-    <!-- contact.html -->
-    <div class="jumbotron text-center">
-        <h1>Sensors Page</h1>
+<!DOCTYPE html>
+<html>
 
-        <table id="t01">
-            <tr>
-                <th>Sensor ID</th>
-                <th>Sensor Type</th>
-                <th>IPv6s</th>
-            </tr>
-            <tr>
-                <td>Sensor ID</td>
-                <td>Sensor Type</td>
-                <td>IPv6s</td>
-            </tr>
-        </table>
-    </div>
-<%={{ }}=%>
+<head>
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td,
+        th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2 class="text-center">Sensors Table</h2>
+    {{#_msgid}} {{/_msgid}}
+    <table>
+        <tr>
+            <th>IPv6s</th>
+            <th>Temperature</th>
+            <th>Accelerometre</th>
+        </tr>
+        {{#items}}
+        <tr>
+            <td>
+                <a href="{{IPv6s}}">{{IPv6s}}</a>
+            </td>
+            <td>
+                <strong>{{temperature}}</strong>
+            </td>
+            <td>
+                <strong>{{accelerometre}}</strong>
+            </td>
+        </tr>
+        {{/items}}
+    </table>
+
+</body>
+
+</html>
