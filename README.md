@@ -1,6 +1,7 @@
 # IoT platform management App
 
 This project is about setting up a platform of **IoT** devices, we use here :
+
 * sensors type : **Zolertia RE-Mote**
 * Contiki-ng,
 * **CoAP** Servers and client to request the Data from sensors
@@ -8,6 +9,7 @@ This project is about setting up a platform of **IoT** devices, we use here :
 * And node-red, a JavaScript framework to build the backend App
 
 Dependacies :
+
 * nodejs >= 10.x.x
 * npm >= 5.x.x
 * node-red >= 0.18.x
