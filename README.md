@@ -19,7 +19,7 @@ Dependancies :
 
 A CoAP request is made by a client on node-red to sensors working as CoAP servers, the data is return in **JSON format** and then bind to an UI, and stored in an MySQL database.
 
-A User **Interface (UI)** is also available from a browser on the host OS at {docker_ip_address}/1880/ui1
+A User **Interface (UI)** is also available from a browser on the host OS at {docker_ip_address}:1880/ui1
 
 ## Test
 
