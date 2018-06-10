@@ -26,12 +26,9 @@ A User **Interface (UI)** is also available from a browser on the host OS at {do
 After installing all the dependancy below inside the docker container running contiki-ng, clone the repository :
 
 * --> $ git clone <https://MoussaK@bitbucket.org/MoussaK/pfe-telecom-2.git>
-* Launch node-red and import the flows :
-
-  * First IPv6s_flow.json
+* Launch node-red and import the flows :* First IPv6s_flow.json
   * Then database.json
   * And App_flow.json
-  
 * And --> **deploy**
 
 Inject the timestamp for IPv6s_flow.json, and the timestamp for the database.json and then go to the UI url.
