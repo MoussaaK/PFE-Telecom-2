@@ -200,7 +200,7 @@
     "fieldType": "msg",
     "format": "handlebars",
     "syntax": "mustache",
-    "template": "<!DOCTYPE html>\n<html>\n<head>\n<style>\ntable {\n    font-family: arial, sans-serif;\n    border-collapse: collapse;\n    width: 100%;\n}\n\ntd, th {\n    border: 1px solid #dddddd;\n    text-align: left;\n    padding: 8px;\n}\n\ntr:nth-child(even) {\n    background-color: #dddddd;\n}\n</style>\n</head>\n<body>\n\n<h2 class=\"text-center\">Sensors Table</h2>\n{{#_msgid}}\n{{/_msgid}}\n<table>\n  <tr>\n    <th>IPv6s</th>\n    <th>Temperature</th>\n    <th>Accelerometre</th>\n  </tr>\n  {{#items}}\n  <tr>\n    <td><a href=\"{{IPv6s}}\">{{IPv6s}}</a></td>\n    <td><strong>{{temperature}}</strong></td>\n    <td><strong>{{accelerometre}}</strong></td>\n  </tr>\n  {{/items}}\n</table>\n\n</body>\n</html>\n",
+    "template": "<!DOCTYPE html>\n<html>\n<head>\n<style>\ntable {\n    font-family: arial, sans-serif;\n    border-collapse: collapse;\n    width: 100%;\n}\n\ntd, th {\n    border: 1px solid #dddddd;\n    text-align: left;\n    padding: 8px;\n}\n\ntr:nth-child(even) {\n    background-color: #dddddd;\n}\n</style>\n</head>\n<body>\n\n<h2 class=\"text-center\">Sensors' Table</h2>\n{{#_msgid}}\n{{/_msgid}}\n<table>\n  <tr>\n    <th>IPv6s</th>\n    <th>Temperature</th>\n    <th>Accelerometre</th>\n  </tr>\n  {{#items}}\n  <tr>\n    <td><a href=\"{{IPv6s}}\">{{IPv6s}}</a></td>\n    <td><strong>{{temperature}}</strong></td>\n    <td><strong>{{accelerometre}}</strong></td>\n  </tr>\n  {{/items}}\n</table>\n\n</body>\n</html>\n",
     "output": "str",
     "x": 463,
     "y": 243,
