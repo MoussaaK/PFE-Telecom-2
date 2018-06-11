@@ -170,8 +170,12 @@ PROCESS_THREAD(er_example_server, ev, data)
 */
 
 /*Config Capteurs*/
+
+//Initialisation des capteurs
 adc_zoul.configure(SENSORS_HW_INIT, ZOUL_SENSORS_ADC_ALL);
+//Active le capteur interne de temperature pour pouvoir etre lu
 SENSORS_ACTIVATE(cc2538_temp_sensor);
+//Active le capteur interne pour que l'on puisse lire le voltage
 SENSORS_ACTIVATE(vdd3_sensor);
 
   /* Define application-specific events here. */
