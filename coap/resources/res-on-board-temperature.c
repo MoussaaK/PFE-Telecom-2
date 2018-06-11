@@ -76,6 +76,15 @@ res_periodic_handler()
 {
   //int temperature = adc_zoul.value(ZOUL_SENSORS_ADC1);
   //int temperature = vdd3_sensor.value(CC2538_SENSORS_VALUE_TYPE_CONVERTED);
+  // cc2538_temp_sensor donne la valeur de la temperature interne
+  // vdd3_sensor donne la valeur du voltage
+  /*
+  adc_zoul.value(ZOUL_SENSORS_ADC1);
+  adc_zoul.value(ZOUL_SENSORS_ADC2);
+  adc_zoul.value(ZOUL_SENSORS_ADC3);
+
+  Permettent de sniffer les trois ports du capteur
+  */
   int temperature = cc2538_temp_sensor.value(CC2538_SENSORS_VALUE_TYPE_CONVERTED);
 
   ++interval_counter;
